@@ -15,6 +15,7 @@ transform/scale = Vector2( 0.5, 0.5 )
 [node name="Particles2D" type="Particles2D" parent="."]
 
 visibility/opacity = 0.6
+visibility/self_opacity = 0.3
 transform/pos = Vector2( -1.14032, -14.7219 )
 transform/rot = 180.0
 config/amount = 50
