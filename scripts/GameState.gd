@@ -1,6 +1,6 @@
 extends Node
 
-var oxygen = 100
+export var oxygen = 100
 var oxygen_lost_per_leak = 0.15
 
 export var isGameOver = false

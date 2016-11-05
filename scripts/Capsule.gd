@@ -2,7 +2,7 @@ extends RigidBody2D
 
 var leaks
 
-const leakForce = 60
+const leak_force = 60
 
 func _ready():
 	setup_refs()
@@ -13,5 +13,7 @@ func setup_refs():
 
 func _fixed_process(delta):
 	for leak in leaks.get_children():
-		var dir = Utils.radians_to_vec(leak.get_global_transform().get_rotation())
-		add_force(leak.get_global_transform().get_origin(), dir * delta * leakForce)
+		var force_dir = Utils.radians_to_vec(leak.get_global_transform().get_rotation())
+		var oxygen_factor = ((GameState.oxygen - 50) / 100) + 0.5
+		var force_value = delta * leak_force * oxygen_factor
+		add_force(leak.get_global_transform().get_origin(), force_dir * force_value)
