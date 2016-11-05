@@ -1,22 +1,25 @@
-[gd_scene load_steps=47 format=1]
+[gd_scene load_steps=51 format=1]
 
 [ext_resource path="res://sprites/stars.png" type="Texture" id=1]
 [ext_resource path="res://sprites/nebula.png" type="Texture" id=2]
 [ext_resource path="res://sprites/nebula2.png" type="Texture" id=3]
 [ext_resource path="res://sprites/asteroids.png" type="Texture" id=4]
 [ext_resource path="res://scripts/Capsule.gd" type="Script" id=5]
-[ext_resource path="res://scripts/AsteroidFactory.gd" type="Script" id=6]
-[ext_resource path="res://sprites/AirParticle.png" type="Texture" id=7]
-[ext_resource path="res://sprites/capsule.png" type="Texture" id=8]
-[ext_resource path="res://scripts/PlayerController.gd" type="Script" id=9]
-[ext_resource path="res://sprites/astronaut.png" type="Texture" id=10]
-[ext_resource path="res://animations/PlayerDrill.tres" type="Animation" id=11]
-[ext_resource path="res://animations/PlayerWalk.tres" type="Animation" id=12]
-[ext_resource path="res://scripts/Radar.gd" type="Script" id=13]
-[ext_resource path="res://sprites/arrow.png" type="Texture" id=14]
-[ext_resource path="res://fonts/muli.tres" type="DynamicFont" id=15]
-[ext_resource path="res://scripts/OxygenBar.gd" type="Script" id=16]
-[ext_resource path="res://sprites/spacestation.png" type="Texture" id=17]
+[ext_resource path="res://sprites/capsuleTop.png" type="Texture" id=6]
+[ext_resource path="res://scripts/AsteroidFactory.gd" type="Script" id=7]
+[ext_resource path="res://sprites/AirParticle.png" type="Texture" id=8]
+[ext_resource path="res://sprites/capsule.png" type="Texture" id=9]
+[ext_resource path="res://scripts/Radar.gd" type="Script" id=10]
+[ext_resource path="res://sprites/arrow.png" type="Texture" id=11]
+[ext_resource path="res://scripts/PlayerController.gd" type="Script" id=12]
+[ext_resource path="res://sprites/astronaut.png" type="Texture" id=13]
+[ext_resource path="res://animations/PlayerDrill.tres" type="Animation" id=14]
+[ext_resource path="res://animations/PlayerWalk.tres" type="Animation" id=15]
+[ext_resource path="res://fonts/muli.tres" type="DynamicFont" id=16]
+[ext_resource path="res://styles/oxygen.tres" type="StyleBox" id=17]
+[ext_resource path="res://scripts/OxygenBar.gd" type="Script" id=18]
+[ext_resource path="res://fonts/Muli-Regular.ttf" type="DynamicFontData" id=19]
+[ext_resource path="res://sprites/spacestation.png" type="Texture" id=20]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -162,6 +165,13 @@ points = Vector2Array( 30.8899, -193.211, 26.9036, -115.094, 14.2368, -130.892, 
 
 custom_solver_bias = 0.0
 radius = 10.0
+
+[sub_resource type="DynamicFont" id=30]
+
+font/size = 120
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 19 )
 
 [node name="Main" type="Node2D"]
 
@@ -345,15 +355,23 @@ damp_override/linear = 0.4
 damp_override/angular = 6.0
 script/script = ExtResource( 5 )
 
+[node name="Roof" type="Sprite" parent="Capsule"]
+
+transform/pos = Vector2( 67.165, -26.3437 )
+transform/rot = -90.0
+transform/scale = Vector2( 0.501456, 0.430694 )
+z/z = 3
+texture = ExtResource( 6 )
+
 [node name="Asteroids" type="Node2D" parent="Capsule"]
 
 editor/display_folded = true
 transform/pos = Vector2( 791.266, 987.449 )
-script/script = ExtResource( 6 )
+script/script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Capsule/Asteroids"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="Capsule"]
 
@@ -382,10 +400,11 @@ drag_margin/bottom = 0.2
 transform/pos = Vector2( 67.3767, -8.4069 )
 transform/rot = -90.0
 transform/scale = Vector2( 0.501456, 0.430694 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="Collision" type="CollisionPolygon2D" parent="Capsule"]
 
+visibility/visible = false
 transform/pos = Vector2( 6.714, -43.1479 )
 transform/scale = Vector2( 0.648844, 0.466428 )
 build_mode = 0
@@ -393,10 +412,25 @@ polygon = Vector2Array( -41.1287, 5.0401, -21.918, -90.0155, 6.08337, -114.081, 
 shape_range = Vector2( 0, 27 )
 trigger = false
 
+[node name="Radar" type="Node2D" parent="Capsule"]
+
+editor/display_folded = true
+transform/pos = Vector2( 72.4366, -35.6044 )
+script/script = ExtResource( 10 )
+
+[node name="Sprite" type="Sprite" parent="Capsule/Radar"]
+
+visibility/opacity = 0.75
+visibility/blend_mode = 4
+transform/pos = Vector2( 0, -250 )
+transform/rot = 135.0
+transform/scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 11 )
+
 [node name="Player" type="KinematicBody2D" parent="Capsule"]
 
 editor/display_folded = true
-transform/pos = Vector2( 89.2121, 5.38858 )
+transform/pos = Vector2( 69.8423, -15.5732 )
 transform/scale = Vector2( 1.5, 1.5 )
 input/pickable = false
 shapes/0/shape = SubResource( 29 )
@@ -405,13 +439,13 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
-script/script = ExtResource( 9 )
+script/script = ExtResource( 12 )
 speed = 2.5
 
 [node name="Sprite" type="Sprite" parent="Capsule/Player"]
 
 transform/scale = Vector2( 0.125, 0.125 )
-texture = ExtResource( 10 )
+texture = ExtResource( 13 )
 hframes = 7
 frame = 1
 
@@ -428,8 +462,8 @@ _update_shape_index = 0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/PlayerDrill = ExtResource( 11 )
-anims/Walk = ExtResource( 12 )
+anims/PlayerDrill = ExtResource( 14 )
+anims/Walk = ExtResource( 15 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -442,18 +476,6 @@ exclude_parent = false
 cast_to = Vector2( 0, -25 )
 layer_mask = 1
 type_mask = 15
-
-[node name="Radar" type="Node2D" parent="Capsule"]
-
-transform/pos = Vector2( 72.4366, -35.6044 )
-script/script = ExtResource( 13 )
-
-[node name="Sprite" type="Sprite" parent="Capsule/Radar"]
-
-transform/pos = Vector2( 0, -250 )
-transform/rot = 135.0
-transform/scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 14 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -468,6 +490,7 @@ transform/pos = Vector2( 11.2782, 7.29765 )
 
 [node name="Label" type="Label" parent="CanvasLayer/GUI"]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -476,7 +499,7 @@ margin/left = 4.0
 margin/top = 6.0
 margin/right = 62.0
 margin/bottom = 59.0
-custom_fonts/font = ExtResource( 15 )
+custom_fonts/font = ExtResource( 16 )
 text = "O"
 percent_visible = 1.0
 lines_skipped = 0
@@ -492,7 +515,7 @@ margin/left = 27.0
 margin/top = 7.0
 margin/right = 85.0
 margin/bottom = 60.0
-custom_fonts/font = ExtResource( 15 )
+custom_fonts/font = ExtResource( 16 )
 text = "2"
 percent_visible = 1.0
 lines_skipped = 0
@@ -509,7 +532,8 @@ margin/left = 2.0
 margin/top = 250.0
 margin/right = 201.0
 margin/bottom = 298.0
-custom_fonts/font = ExtResource( 15 )
+custom_styles/fg = ExtResource( 17 )
+custom_fonts/font = ExtResource( 16 )
 range/min = 0.0
 range/max = 100.0
 range/step = 1.0
@@ -518,15 +542,52 @@ range/value = 99.0
 range/exp_edit = false
 range/rounded = false
 percent/visible = true
-script/script = ExtResource( 16 )
+script/script = ExtResource( 18 )
+
+[node name="Victory" type="Label" parent="CanvasLayer/GUI"]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -12.0
+margin/top = 286.0
+margin/right = 1267.0
+margin/bottom = 438.0
+custom_fonts/font = SubResource( 30 )
+text = "You made it!"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="GameOver" type="Label" parent="CanvasLayer/GUI"]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -12.0
+margin/top = 286.0
+margin/right = 1267.0
+margin/bottom = 438.0
+custom_fonts/font = SubResource( 30 )
+text = "Game Over!"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="SpaceStation" type="Node2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 2048.97, -481.499 )
 
 [node name="Sprite" type="Sprite" parent="SpaceStation"]
 
 transform/scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 17 )
+texture = ExtResource( 20 )
 
 

@@ -22,7 +22,7 @@ func loseGame():
 		return
 
 	isGameOver = true
-
+	get_node("/root/Main/CanvasLayer/GUI/GameOver").show()
 	print("Lose")
 
 func winGame():
@@ -30,5 +30,5 @@ func winGame():
 		return
 
 	isGameOver = true
-
+	get_node("/root/Main/CanvasLayer/GUI/Victory").show()
 	print("Win")
