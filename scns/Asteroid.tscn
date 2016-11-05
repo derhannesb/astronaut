@@ -10,7 +10,6 @@ radius = 64.0
 
 [node name="Asteroid" type="RigidBody2D"]
 
-editor/display_folded = true
 transform/pos = Vector2( 722.362, 127.332 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -19,7 +18,7 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
-mass = 1.0
+mass = 12.0
 friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0
