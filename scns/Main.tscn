@@ -1,13 +1,14 @@
-[gd_scene load_steps=32 format=1]
+[gd_scene load_steps=33 format=1]
 
 [ext_resource path="res://sprites/stars.png" type="Texture" id=1]
 [ext_resource path="res://sprites/nebula.png" type="Texture" id=2]
-[ext_resource path="res://scripts/Capsule.gd" type="Script" id=3]
-[ext_resource path="res://sprites/capsule.png" type="Texture" id=4]
-[ext_resource path="res://scripts/PlayerController.gd" type="Script" id=5]
-[ext_resource path="res://sprites/astronaut.png" type="Texture" id=6]
-[ext_resource path="res://animations/PlayerWalk.tres" type="Animation" id=7]
-[ext_resource path="res://fonts/Muli-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://sprites/asteroids.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Capsule.gd" type="Script" id=4]
+[ext_resource path="res://sprites/capsule.png" type="Texture" id=5]
+[ext_resource path="res://scripts/PlayerController.gd" type="Script" id=6]
+[ext_resource path="res://sprites/astronaut.png" type="Texture" id=7]
+[ext_resource path="res://animations/PlayerWalk.tres" type="Animation" id=8]
+[ext_resource path="res://fonts/Muli-Regular.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=45]
 
@@ -124,13 +125,12 @@ radius = 10.0
 font/size = 50
 font/use_mipmaps = true
 font/use_filter = true
-font/font = ExtResource( 8 )
+font/font = ExtResource( 9 )
 
 [node name="Main" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -142,28 +142,30 @@ scroll/limit_begin = Vector2( 0, 0 )
 scroll/limit_end = Vector2( 0, 0 )
 scroll/ignore_camera_zoom = false
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Stars" type="ParallaxLayer" parent="ParallaxBackground"]
 
+editor/display_folded = true
 transform/pos = Vector2( -609.229, -328.781 )
 motion/scale = Vector2( 0.5, 0.5 )
 motion/offset = Vector2( 0, 0 )
 motion/mirroring = Vector2( 1280, 720 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Stars"]
 
 transform/pos = Vector2( -30.7678, -31.4165 )
 transform/scale = Vector2( 0.667936, 0.669694 )
 texture = ExtResource( 1 )
 centered = false
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Nebula" type="ParallaxLayer" parent="ParallaxBackground"]
 
+editor/display_folded = true
 transform/pos = Vector2( -609.229, -328.781 )
 motion/scale = Vector2( 1, 1 )
 motion/offset = Vector2( 0, 0 )
 motion/mirroring = Vector2( 1280, 720 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Nebula"]
 
 visibility/opacity = 0.2
 transform/pos = Vector2( -33.811, -35.8507 )
@@ -171,9 +173,48 @@ transform/scale = Vector2( 0.666667, 0.666672 )
 texture = ExtResource( 2 )
 centered = false
 
-[node name="Capsule" type="RigidBody2D" parent="."]
+[node name="Asteroids" type="ParallaxLayer" parent="ParallaxBackground"]
 
 editor/display_folded = true
+motion/scale = Vector2( 0.7, 0.7 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Asteroids"]
+
+transform/pos = Vector2( 948.436, 407.27 )
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground/Asteroids"]
+
+transform/pos = Vector2( 61.2035, 475.553 )
+transform/rot = 7.92748
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Asteroids2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.5, 0.5 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Asteroids2"]
+
+transform/pos = Vector2( 797.802, 407.27 )
+transform/scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground/Asteroids2"]
+
+transform/pos = Vector2( 342.945, 433.71 )
+transform/rot = 7.92748
+transform/scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 3 )
+
+[node name="Capsule" type="RigidBody2D" parent="."]
+
+transform/pos = Vector2( 642.999, 361.261 )
 input/pickable = false
 shapes/0/shape = SubResource( 45 )
 shapes/0/transform = Matrix32( 0.657039, 0, 0, 0.449675, 10.6627, -14.4632 )
@@ -255,7 +296,7 @@ velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
 damp_override/linear = 0.4
 damp_override/angular = 6.0
-script/script = ExtResource( 3 )
+script/script = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="Capsule"]
 
@@ -283,7 +324,7 @@ drag_margin/bottom = 0.2
 
 transform/pos = Vector2( 0.473331, -0.157779 )
 transform/scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="Collision" type="CollisionPolygon2D" parent="Capsule"]
 
@@ -305,13 +346,13 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
-script/script = ExtResource( 5 )
+script/script = ExtResource( 6 )
 speed = 2.5
 
 [node name="Sprite" type="Sprite" parent="Capsule/Player"]
 
 transform/scale = Vector2( 0.125, 0.125 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 hframes = 7
 frame = 1
 
@@ -328,7 +369,7 @@ _update_shape_index = 0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/Walk = ExtResource( 7 )
+anims/Walk = ExtResource( 8 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
