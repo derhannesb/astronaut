@@ -113,28 +113,31 @@ scroll/limit_begin = Vector2( 0, 0 )
 scroll/limit_end = Vector2( 0, 0 )
 scroll/ignore_camera_zoom = false
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Stars" type="ParallaxLayer" parent="ParallaxBackground"]
 
-editor/display_folded = true
 motion/scale = Vector2( 1, 1 )
 motion/offset = Vector2( 0, 0 )
-motion/mirroring = Vector2( 1024, 600 )
+motion/mirroring = Vector2( 1280, 720 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Stars"]
 
+transform/pos = Vector2( 441.752, 244.045 )
 texture = ExtResource( 1 )
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Nebula" type="ParallaxLayer" parent="ParallaxBackground"]
 
-motion/scale = Vector2( 0.1, 0.1 )
+motion/scale = Vector2( 0.3, 0.3 )
 motion/offset = Vector2( 0, 0 )
-motion/mirroring = Vector2( 0, 0 )
+motion/mirroring = Vector2( 1280, 720 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Nebula"]
 
-visibility/opacity = 0.5
-transform/pos = Vector2( -0.598755, 0 )
+visibility/visible = false
+visibility/opacity = 0.25
+transform/pos = Vector2( -514.402, -292.916 )
+transform/scale = Vector2( 0.665877, 0.668844 )
 texture = ExtResource( 2 )
+centered = false
 
 [node name="Capsule" type="RigidBody2D" parent="."]
 
