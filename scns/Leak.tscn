@@ -45,9 +45,9 @@ color/color_ramp = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/pos = Vector2( 0.930797, -11.8796 )
+transform/pos = Vector2( 1.43518, -4.04205 )
 transform/rot = 9.03262
-transform/scale = Vector2( 0.498024, 1.1363 )
+transform/scale = Vector2( 0.427283, 0.639857 )
 texture = ExtResource( 2 )
 
 
