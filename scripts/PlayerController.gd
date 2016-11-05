@@ -76,3 +76,6 @@ func punch_leak():
 	new_leak.set_pos(get_transform().get_origin())
 	new_leak.set_rot(get_rot())
 	leaks.add_child(new_leak)
+	
+	var leak_dir = utils.radians_to_vec(new_leak.get_rot())
+	capsule.add_force(new_leak.get_pos(), leak_dir * 800)
