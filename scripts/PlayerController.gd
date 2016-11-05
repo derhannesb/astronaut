@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
-export var speed = 2.5;
-export var init_rot = 90;
+export var speed = 2.5
 
 const DIR_N  = 0
 const DIR_NW = 1
@@ -54,7 +53,7 @@ func _fixed_process(delta):
 
 
 	if (dir != null):
-		set_rotd((dir * 45) - init_rot)
+		set_rotd((dir * 45))
 
 		if (!animation_player.is_playing()):
 			animation_player.play("Walk")

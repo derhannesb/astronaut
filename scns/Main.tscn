@@ -220,7 +220,6 @@ collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 3 )
 speed = 2.5
-init_rot = 90
 
 [node name="Sprite" type="Sprite" parent="Capsule/Player"]
 
