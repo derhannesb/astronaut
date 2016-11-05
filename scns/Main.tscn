@@ -217,12 +217,16 @@ tracks/3/path = NodePath("../Capsule:velocity/angular")
 tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = { "times":FloatArray( 0, 2.4, 2.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 0.5 ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Capsule/Radar/Sprite:visibility/visible")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0, 3.8, 3.9 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ false, false, true ] }
 
 [node name="Main" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -266,13 +270,13 @@ centered = false
 [node name="Nebula2" type="ParallaxLayer" parent="ParallaxBackground"]
 
 transform/pos = Vector2( -609.229, -328.781 )
-motion/scale = Vector2( 0.9, 0.9 )
+motion/scale = Vector2( 0.8, 0.8 )
 motion/offset = Vector2( 0, 0 )
 motion/mirroring = Vector2( 1920, 1080 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Nebula2"]
 
-visibility/opacity = 0.5
+visibility/opacity = 0.33
 transform/pos = Vector2( -33.811, -35.8507 )
 transform/scale = Vector2( 1, 0.999999 )
 texture = ExtResource( 3 )
@@ -394,8 +398,8 @@ contacts_reported = 0
 contact_monitor = false
 sleeping = false
 can_sleep = true
-velocity/linear = Vector2( 10, -200 )
-velocity/angular = 0.5
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
 damp_override/linear = 0.4
 damp_override/angular = 6.0
 script/script = ExtResource( 5 )
@@ -464,6 +468,7 @@ script/script = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="Capsule/Radar"]
 
+visibility/visible = false
 visibility/opacity = 0.75
 visibility/blend_mode = 4
 transform/pos = Vector2( 0, -250 )
