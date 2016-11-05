@@ -1,7 +1,7 @@
 extends Node
 
 var oxygen = 100
-var oxygen_lost_per_leak = 0.2
+var oxygen_lost_per_leak = 0.15
 
 export var isGameOver = false
 
@@ -18,7 +18,17 @@ func _process(delta):
 		loseGame()
 
 func loseGame():
+	if (isGameOver):
+		return
+
 	isGameOver = true
 
+	print("Lose")
+
 func winGame():
-	pass
+	if (isGameOver):
+		return
+
+	isGameOver = true
+
+	print("Win")
