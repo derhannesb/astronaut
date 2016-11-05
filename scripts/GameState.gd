@@ -9,13 +9,21 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
-	var leaks = get_node("/root/Main/Capsule/Leaks")
-	var leak_cont = leaks.get_children().size()
+	var leaks_obj = get_node("/root/Main/Capsule/Leaks")
+	var leaks_objs = leaks_obj.get_children()
+	var leak_cont = leaks_objs.size()
 
 	oxygen -= delta * leak_cont * oxygen_lost_per_leak
 
 	if (oxygen <= 0):
 		loseGame()
+
+	for leak in leaks_objs:
+		var amount = ((oxygen - 20) / 2) + 10
+		leak.get_node("Particles2D").set_amount(amount)
+
+		if (isGameOver):
+			leak.get_node("Particles2D").hide()
 
 func loseGame():
 	if (isGameOver):
