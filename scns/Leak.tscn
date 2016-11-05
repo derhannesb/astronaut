@@ -22,7 +22,6 @@ config/lifetime = 0.6
 config/time_scale = 3.0
 config/preprocess = 0.1
 config/local_space = false
-config/explosiveness = 0.95
 config/texture = ExtResource( 1 )
 params/direction = 0.0
 params/spread = 7.59
