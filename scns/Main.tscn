@@ -390,9 +390,9 @@ drag_margin/bottom = 0.2
 
 [node name="Sprite" type="Sprite" parent="Capsule"]
 
-transform/pos = Vector2( 67.3325, -9.73968 )
+transform/pos = Vector2( 67.3767, -8.4069 )
 transform/rot = -90.0
-transform/scale = Vector2( 0.524822, 0.460866 )
+transform/scale = Vector2( 0.501456, 0.430694 )
 texture = ExtResource( 8 )
 
 [node name="Collision" type="CollisionPolygon2D" parent="Capsule"]
