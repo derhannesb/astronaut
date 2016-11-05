@@ -1,22 +1,24 @@
 extends Node
 
 var oxygen = 100
-var oxygen_lost_per_leak = 0.1
+var oxygen_lost_per_leak = 0.2
+
+export var isGameOver = false
 
 func _ready():
 	set_process(true)
 
-func _fixed_process(delta):
-	var leaks = find_node("Leaks", true, false);
+func _process(delta):
+	var leaks = get_node("/root/Main/Capsule/Leaks")
 	var leak_cont = leaks.get_children().size()
-	
+
 	oxygen -= delta * leak_cont * oxygen_lost_per_leak
-	
+
 	if (oxygen <= 0):
 		loseGame()
-	
+
 func loseGame():
-	pass
+	isGameOver = true
 
 func winGame():
 	pass
