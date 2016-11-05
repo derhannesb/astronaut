@@ -244,7 +244,7 @@ can_sleep = true
 velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
 damp_override/linear = 0.4
-damp_override/angular = 3.0
+damp_override/angular = 6.0
 script/script = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="Capsule"]
