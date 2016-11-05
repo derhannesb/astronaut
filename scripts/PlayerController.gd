@@ -31,7 +31,8 @@ func _fixed_process(delta):
 	var btn_right_pressed = Input.is_action_pressed("PlayerMoveRight")
 	var btn_bottom_pressed = Input.is_action_pressed("PlayerMoveBottom")
 	var btn_left_pressed = Input.is_action_pressed("PlayerMoveLeft")
-
+	
+	# Move
 	if (btn_top_pressed):
 		move(Vector2(0, -speed))
 	if (btn_right_pressed):
@@ -40,7 +41,8 @@ func _fixed_process(delta):
 		move(Vector2(0, speed))
 	if (btn_left_pressed):
 		move(Vector2(-speed, 0))
-
+		
+	# Rotate
 	var dir = null
 	if (btn_top_pressed && btn_right_pressed):
 		dir = DIR_NE
@@ -58,11 +60,11 @@ func _fixed_process(delta):
 		dir = DIR_S
 	elif (btn_left_pressed):
 		dir = DIR_W
+		
 
-
-	if (dir != null):
-		set_rotd((dir * 45))
-
+	# Animation
+	if (dir != null):	
+		set_rotd((dir * 45) - capsule.get_rotd())
 		if (!animation_player.is_playing()):
 			animation_player.play("Walk")
 	else:
