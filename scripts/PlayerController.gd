@@ -41,7 +41,7 @@ func _fixed_process(delta):
 		move(Vector2(0, speed))
 	if (btn_left_pressed):
 		move(Vector2(-speed, 0))
-		
+
 	# Rotate
 	var dir = null
 	if (btn_top_pressed && btn_right_pressed):
@@ -60,20 +60,22 @@ func _fixed_process(delta):
 		dir = DIR_S
 	elif (btn_left_pressed):
 		dir = DIR_W
-		
 
 	# Animation
-	if (dir != null):	
+	
+	if (dir != null):
 		set_rotd((dir * 45) - capsule.get_rotd())
 		if (!animation_player.is_playing()):
 			animation_player.play("Walk")
-	else:
+	elif (animation_player.get_current_animation() != "PlayerDrill"):
 		animation_player.stop()
 
 	if (Input.is_action_just_pressed("PlayerPunch")):
 		punch_leak()
 
 func punch_leak():
+	animation_player.play("PlayerDrill")
+	
 	var new_leak = leak_dummy.instance()
 	new_leak.set_pos(get_transform().get_origin())
 	new_leak.set_rot(get_rot())
