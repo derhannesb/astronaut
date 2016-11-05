@@ -86,5 +86,5 @@ func punch_leak():
 		var hit_rot = atan2(hit_dir.x, hit_dir.y)
 		new_leak.set_global_rot((get_global_rot() + hit_rot) / 2)
 		
-		var leak_dir = utils.radians_to_vec(new_leak.get_rot())
+		var leak_dir = Utils.radians_to_vec(new_leak.get_rot())
 		capsule.add_force(new_leak.get_pos(), leak_dir * 500)

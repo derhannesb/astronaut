@@ -13,5 +13,5 @@ func setup_refs():
 
 func _fixed_process(delta):
 	for leak in leaks.get_children():
-		var dir = utils.radians_to_vec(leak.get_global_transform().get_rotation())
+		var dir = Utils.radians_to_vec(leak.get_global_transform().get_rotation())
 		add_force(leak.get_global_transform().get_origin(), dir * delta * leakForce)
