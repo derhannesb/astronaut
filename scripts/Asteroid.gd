@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const max_distance_to_capsule = 4000
+const max_distance_to_capsule = 6000
 
 export var min_force = 100
 export var max_force = 1000

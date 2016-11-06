@@ -490,7 +490,7 @@ centered = false
 
 [node name="Capsule" type="RigidBody2D" parent="."]
 
-transform/pos = Vector2( 414.168, 281.548 )
+transform/pos = Vector2( 425.168, 280.548 )
 transform/rot = -1.08714
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -639,7 +639,7 @@ drag_margin/bottom = 0.2
 
 [node name="Sprite" type="Sprite" parent="Capsule"]
 
-transform/pos = Vector2( 67.3767, -8.4069 )
+transform/pos = Vector2( 67.3706, -8.73038 )
 transform/rot = -90.0
 transform/scale = Vector2( 0.501456, 0.430694 )
 texture = ExtResource( 9 )
@@ -1178,6 +1178,36 @@ autoplay = "idle"
 transform/pos = Vector2( 742.59, 702.227 )
 min_force = 1200
 max_force = 2000
+
+[node name="Asteroid2" parent="." instance=ExtResource( 29 )]
+
+transform/pos = Vector2( 1489.99, 544.787 )
+min_force = 100
+max_force = 1000
+
+[node name="Asteroid3" parent="." instance=ExtResource( 29 )]
+
+transform/pos = Vector2( 747.836, -702.167 )
+min_force = 100
+max_force = 1000
+
+[node name="Asteroid4" parent="." instance=ExtResource( 29 )]
+
+transform/pos = Vector2( 249.694, -568.738 )
+min_force = 100
+max_force = 1000
+
+[node name="Asteroid5" parent="." instance=ExtResource( 29 )]
+
+transform/pos = Vector2( -676.209, 400.124 )
+min_force = 100
+max_force = 1000
+
+[node name="Asteroid6" parent="." instance=ExtResource( 29 )]
+
+transform/pos = Vector2( 1598.17, -243.444 )
+min_force = 100
+max_force = 1000
 
 [node name="SfxPlayer" type="StreamPlayer" parent="."]
 
