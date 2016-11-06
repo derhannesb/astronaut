@@ -11,5 +11,3 @@ func _process(delta):
 	var target_norm = (crane_target.get_global_pos() - get_global_pos()).normalized()
 	var new_pos = target_norm*crane_max_length
 	set_pos(new_pos)
-	print("pos: " + str(new_pos))
-	
