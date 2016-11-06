@@ -1,7 +1,7 @@
 extends Node
 
 export var oxygen = 100
-var oxygen_lost_per_leak = 0.15
+var oxygen_lost_per_leak = .15
 
 export var isGameOver = false
 
@@ -21,7 +21,7 @@ func _process(delta):
 	for leak in leaks_objs:
 		var amount = ((oxygen - 20) / 2) + 10
 		leak.get_node("Particles2D").set_amount(amount)
-
+		leak.get_node("StreamPlayer").set_volume_db(-30+(oxygen/3))
 		if (isGameOver):
 			leak.get_node("Particles2D").hide()
 
@@ -31,6 +31,7 @@ func loseGame():
 
 	isGameOver = true
 	get_node("/root/Main/CanvasLayer/GUI/GameOver").show()
+	get_node("/root/Main/CanvasLayer/GUI/SFXGameOver").play()
 	print("Lose")
 
 func winGame():

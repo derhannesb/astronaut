@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=1]
+[gd_scene load_steps=67 format=1]
 
 [ext_resource path="res://sprites/stars.png" type="Texture" id=1]
 [ext_resource path="res://sprites/nebula.png" type="Texture" id=2]
@@ -21,13 +21,14 @@
 [ext_resource path="res://styles/oxygen.tres" type="StyleBox" id=19]
 [ext_resource path="res://scripts/OxygenBar.gd" type="Script" id=20]
 [ext_resource path="res://fonts/Muli-Regular.ttf" type="DynamicFontData" id=21]
-[ext_resource path="res://sprites/spacestation.png" type="Texture" id=22]
-[ext_resource path="res://scripts/Crane.gd" type="Script" id=23]
-[ext_resource path="res://sprites/craneBase.png" type="Texture" id=24]
-[ext_resource path="res://sprites/craneMiddle.png" type="Texture" id=25]
-[ext_resource path="res://sprites/craneEnd.png" type="Texture" id=26]
-[ext_resource path="res://scns/Asteroid.tscn" type="PackedScene" id=27]
-[ext_resource path="res://sounds/matal-hit.ogg" type="AudioStream" id=28]
+[ext_resource path="res://sounds/gameOver.ogg" type="AudioStream" id=22]
+[ext_resource path="res://sprites/spacestation.png" type="Texture" id=23]
+[ext_resource path="res://scripts/Crane.gd" type="Script" id=24]
+[ext_resource path="res://sprites/craneBase.png" type="Texture" id=25]
+[ext_resource path="res://sprites/craneMiddle.png" type="Texture" id=26]
+[ext_resource path="res://sprites/craneEnd.png" type="Texture" id=27]
+[ext_resource path="res://scns/Asteroid.tscn" type="PackedScene" id=28]
+[ext_resource path="res://sounds/matal-hit.ogg" type="AudioStream" id=29]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -203,7 +204,7 @@ font/font = ExtResource( 21 )
 [sub_resource type="Animation" id=33]
 
 resource/name = "IntroFade"
-length = 10.0
+length = 15.99
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -216,6 +217,11 @@ tracks/1/path = NodePath("Help:visibility/opacity")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = { "times":FloatArray( 5, 6, 9, 10 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ 0.0, 1.0, 1.0, 0.0 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Help2:visibility/opacity")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 10, 10.5, 15, 15.99 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ 0.0, 1.0, 1.0, 0.0 ] }
 
 [sub_resource type="ColorRamp" id=34]
 
@@ -410,7 +416,6 @@ tracks/17/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "upda
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -445,7 +450,7 @@ motion/mirroring = Vector2( 1920, 1080 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Nebula"]
 
-visibility/opacity = 0.2
+visibility/opacity = 0.15
 transform/pos = Vector2( -33.811, -35.8507 )
 transform/scale = Vector2( 1, 0.999999 )
 texture = ExtResource( 2 )
@@ -460,7 +465,7 @@ motion/mirroring = Vector2( 1920, 1080 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Nebula2"]
 
-visibility/opacity = 0.33
+visibility/opacity = 0.15
 transform/pos = Vector2( -33.811, -35.8507 )
 transform/scale = Vector2( 1, 0.999999 )
 texture = ExtResource( 3 )
@@ -483,7 +488,9 @@ centered = false
 
 [node name="Capsule" type="RigidBody2D" parent="."]
 
-transform/pos = Vector2( 422.29, 281.548 )
+editor/display_folded = true
+transform/pos = Vector2( 414.168, 281.548 )
+transform/rot = -1.08714
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 0.648844, 0, 0, 0.466428, 6.714, -43.1479 )
@@ -934,17 +941,35 @@ max_lines_visible = -1
 
 [node name="Help" type="Label" parent="CanvasLayer/GUI"]
 
-visibility/opacity = 0.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = -6.0
-margin/top = 848.0
+margin/top = 784.0
 margin/right = 1913.0
-margin/bottom = 1000.0
+margin/bottom = 936.0
 custom_fonts/font = SubResource( 32 )
-text = "Drill holes into your capsule to return to what is left of your space station!"
+text = "Drill or Patch holes into your capsule to return to what is left of your space station!"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Help2" type="Label" parent="CanvasLayer/GUI"]
+
+visibility/opacity = 0.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -10.0
+margin/top = 763.0
+margin/right = 1909.0
+margin/bottom = 952.0
+custom_fonts/font = SubResource( 32 )
+text = "Move: WASD / ARROW KEYS\nDrill Hole: SPACE / ENTER\nPatch Hole: F / NUMPAD 0"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -980,9 +1005,19 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = "IntroFade"
 
+[node name="SFXGameOver" type="StreamPlayer" parent="CanvasLayer/GUI"]
+
+stream/stream = ExtResource( 22 )
+stream/play = true
+stream/loop = false
+stream/volume_db = 12.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
 [node name="SpaceStation" type="Node2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 420.998, 622.463 )
 
 [node name="Sprite" type="Sprite" parent="SpaceStation"]
@@ -992,7 +1027,7 @@ transform/pos = Vector2( 49.737, 337.403 )
 transform/rot = -270.274
 transform/scale = Vector2( 0.75, 0.75 )
 z/z = 4
-texture = ExtResource( 22 )
+texture = ExtResource( 23 )
 
 [node name="Particles2D" type="Particles2D" parent="SpaceStation/Sprite"]
 
@@ -1040,21 +1075,24 @@ autoplay = "Intro"
 
 [node name="Crane" type="Node2D" parent="SpaceStation"]
 
-transform/pos = Vector2( 48.6783, 112.894 )
-transform/rot = -83.5547
+editor/display_folded = true
+transform/pos = Vector2( 50.6783, 114.894 )
 transform/scale = Vector2( 0.25, 0.25 )
 z/z = 5
-script/script = ExtResource( 23 )
+script/script = ExtResource( 24 )
 
 [node name="Base" type="Sprite" parent="SpaceStation/Crane"]
 
-texture = ExtResource( 24 )
+transform/pos = Vector2( -13.8675, 10.6333 )
+transform/rot = -112.463
+transform/scale = Vector2( 1.37484, 1.37484 )
+texture = ExtResource( 25 )
 
 [node name="FirstArm" type="Sprite" parent="SpaceStation/Crane/Base"]
 
 transform/pos = Vector2( -5.24017, 0.784587 )
 transform/rot = 83.3557
-texture = ExtResource( 25 )
+texture = ExtResource( 26 )
 offset = Vector2( 324.722, 0.231689 )
 __meta__ = { "_edit_bone_":true, "_edit_ik_":true }
 
@@ -1063,7 +1101,7 @@ __meta__ = { "_edit_bone_":true, "_edit_ik_":true }
 transform/pos = Vector2( 540.313, 0.82959 )
 transform/rot = 0.0378173
 transform/scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 25 )
+texture = ExtResource( 26 )
 offset = Vector2( 316.961, 1.7338 )
 __meta__ = { "_edit_bone_":true }
 
@@ -1078,7 +1116,7 @@ __meta__ = { "_edit_bone_":true }
 transform/pos = Vector2( -1.54541, -1.61448 )
 transform/rot = -13.9725
 transform/scale = Vector2( 0.491344, 0.5 )
-texture = ExtResource( 26 )
+texture = ExtResource( 27 )
 offset = Vector2( 316.961, 1.7338 )
 
 [node name="Position2D" type="Position2D" parent="SpaceStation/Crane/Base/FirstArm/SecondArm/Hand/FirstFinger"]
@@ -1092,7 +1130,7 @@ __meta__ = { "_edit_bone_":true }
 transform/pos = Vector2( -9.25067, 11.9241 )
 transform/rot = -22.1277
 transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 26 )
+texture = ExtResource( 27 )
 offset = Vector2( 316.961, 1.7338 )
 
 [node name="Position2D2" type="Position2D" parent="SpaceStation/Crane/Base/FirstArm/SecondArm/Hand/SecondFinger"]
@@ -1119,13 +1157,13 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = "idle"
 
-[node name="Asteroid" parent="." instance=ExtResource( 27 )]
+[node name="Asteroid" parent="." instance=ExtResource( 28 )]
 
 transform/pos = Vector2( 469.129, 466.483 )
 
 [node name="SfxPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 28 )
+stream/stream = ExtResource( 29 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 16.0
