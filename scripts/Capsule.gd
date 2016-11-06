@@ -14,6 +14,9 @@ func setup_refs():
 	leaks = get_node("Leaks")
 
 func _fixed_process(delta):
+	if (GameState.isGameOver):
+		return
+
 	if (abs(get_linear_velocity().x) > 400 || abs(get_linear_velocity().y) > 400):
 		set_linear_damp(2)
 	else:

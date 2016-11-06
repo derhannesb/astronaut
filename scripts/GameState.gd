@@ -40,4 +40,12 @@ func winGame():
 
 	isGameOver = true
 	get_node("/root/Main/CanvasLayer/GUI/Victory").show()
+	var capsule = get_node("/root/Main/Capsule")
+
+	capsule.set_linear_velocity(Vector2(0, 0))
+	capsule.set_angular_velocity(0)
+	capsule.set_angular_damp(1000)
+	capsule.set_linear_damp(1000)
+
+
 	print("Win")
