@@ -727,10 +727,9 @@ type_mask = 15
 
 [node name="FixedRot" type="Node2D" parent="Capsule/Player"]
 
-editor/display_folded = true
-
 [node name="WalkRayN" type="RayCast2D" parent="Capsule/Player/FixedRot"]
 
+transform/pos = Vector2( 0, -5 )
 transform/scale = Vector2( 1.5, 1.5 )
 enabled = true
 exclude_parent = true
@@ -740,6 +739,7 @@ type_mask = 15
 
 [node name="WalkRayNE" type="RayCast2D" parent="Capsule/Player/FixedRot"]
 
+transform/pos = Vector2( 4, -4 )
 transform/scale = Vector2( 1.5, 1.5 )
 enabled = true
 exclude_parent = true
@@ -749,6 +749,7 @@ type_mask = 15
 
 [node name="WalkRayE" type="RayCast2D" parent="Capsule/Player/FixedRot"]
 
+transform/pos = Vector2( 5, 0 )
 transform/scale = Vector2( 1.5, 1.5 )
 enabled = true
 exclude_parent = true
@@ -758,6 +759,7 @@ type_mask = 15
 
 [node name="WalkRaySE" type="RayCast2D" parent="Capsule/Player/FixedRot"]
 
+transform/pos = Vector2( 4, 4 )
 transform/scale = Vector2( 1.5, 1.5 )
 enabled = true
 exclude_parent = true
@@ -767,6 +769,7 @@ type_mask = 15
 
 [node name="WalkRayS" type="RayCast2D" parent="Capsule/Player/FixedRot"]
 
+transform/pos = Vector2( 0, 5 )
 transform/scale = Vector2( 1.5, 1.5 )
 enabled = true
 exclude_parent = true
@@ -776,6 +779,7 @@ type_mask = 15
 
 [node name="WalkRaySW" type="RayCast2D" parent="Capsule/Player/FixedRot"]
 
+transform/pos = Vector2( -4, 4 )
 transform/scale = Vector2( 1.5, 1.5 )
 enabled = true
 exclude_parent = false
@@ -785,6 +789,7 @@ type_mask = 15
 
 [node name="WalkRayW" type="RayCast2D" parent="Capsule/Player/FixedRot"]
 
+transform/pos = Vector2( -5, 0 )
 transform/scale = Vector2( 1.5, 1.5 )
 enabled = true
 exclude_parent = true
@@ -794,6 +799,7 @@ type_mask = 15
 
 [node name="WalkRayNW" type="RayCast2D" parent="Capsule/Player/FixedRot"]
 
+transform/pos = Vector2( -4, -4 )
 transform/scale = Vector2( 1.5, 1.5 )
 enabled = true
 exclude_parent = true
