@@ -16,6 +16,17 @@ const leak_dummy = preload("res://scns/Leak.tscn")
 var animation_player
 var capsule
 var leaks
+var fixed_rot
+
+
+var walk_ray_n
+var walk_ray_nw
+var walk_ray_w
+var walk_ray_sw
+var walk_ray_s
+var walk_ray_se
+var walk_ray_e
+var walk_ray_ne
 
 func _ready():
 	setup_refs()
@@ -25,6 +36,16 @@ func setup_refs():
 	animation_player = get_node("PlayerAnimationPlayer")
 	capsule = get_node("../../Capsule")
 	leaks = get_node("../Leaks")
+	fixed_rot = get_node("FixedRot")
+
+	walk_ray_n = fixed_rot.get_node("WalkRayN")
+	walk_ray_nw = fixed_rot.get_node("WalkRayNW")
+	walk_ray_w = fixed_rot.get_node("WalkRayW")
+	walk_ray_sw = fixed_rot.get_node("WalkRaySW")
+	walk_ray_s = fixed_rot.get_node("WalkRayS")
+	walk_ray_se = fixed_rot.get_node("WalkRaySE")
+	walk_ray_e = fixed_rot.get_node("WalkRayE")
+	walk_ray_ne = fixed_rot.get_node("WalkRayNE")
 
 func _fixed_process(delta):
 	var btn_top_pressed = Input.is_action_pressed("PlayerMoveTop")
@@ -52,29 +73,28 @@ func _fixed_process(delta):
 		dir = DIR_W
 
 	# Move
-
 	if dir != null:
 		set_rotd((dir * 45) - capsule.get_rotd())
 
-		get_node("FixedRot").set_global_rot(0)
+		fixed_rot.set_global_rot(0)
 
 		var canMove = true
 		if (dir == DIR_N):
-			canMove = !get_node("FixedRot/WalkRayN").is_colliding()
+			canMove = !walk_ray_n.is_colliding()
 		elif (dir == DIR_NW):
-			canMove = !get_node("FixedRot/WalkRayNW").is_colliding()
+			canMove = !walk_ray_nw.is_colliding()
 		elif (dir == DIR_W):
-			canMove = !get_node("FixedRot/WalkRayW").is_colliding()
+			canMove = !walk_ray_w.is_colliding()
 		elif (dir == DIR_SW):
-			canMove = !get_node("FixedRot/WalkRaySW").is_colliding()
+			canMove = !walk_ray_sw.is_colliding()
 		elif (dir == DIR_S):
-			canMove = !get_node("FixedRot/WalkRayS").is_colliding()
+			canMove = !walk_ray_s.is_colliding()
 		elif (dir == DIR_SE):
-			canMove = !get_node("FixedRot/WalkRaySE").is_colliding()
+			canMove = !walk_ray_se.is_colliding()
 		elif (dir == DIR_E):
-			canMove = !get_node("FixedRot/WalkRayE").is_colliding()
+			canMove = !walk_ray_e.is_colliding()
 		elif (dir == DIR_NE):
-			canMove = !get_node("FixedRot/WalkRayNE").is_colliding()
+			canMove = !walk_ray_ne.is_colliding()
 
 		if (canMove):
 			if (!animation_player.is_playing()):
