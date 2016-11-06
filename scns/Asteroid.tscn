@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 radius = 64.0
 
-[node name="Asteroid" type="RigidBody2D"]
+[node name="Asteroid" type="RigidBody2D" groups=[ "Asteroids" ]]
 
 transform/pos = Vector2( 722.362, 127.332 )
 input/pickable = false
