@@ -21,7 +21,6 @@ func _fixed_process(delta):
 		add_force(leak.get_global_transform().get_origin(), force_dir * force_value)
 
 func _integrate_forces(state):
-	print(state.get_contact_count())
 	for i in range (state.get_contact_count()):
 		var contact_object = state.get_contact_collider_object(i)
 		if ("Asteroids" in contact_object.get_groups()):
