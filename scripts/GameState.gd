@@ -21,9 +21,12 @@ func _process(delta):
 	for leak in leaks_objs:
 		var amount = ((oxygen - 20) / 2) + 10
 		leak.get_node("Particles2D").set_amount(amount)
-		leak.get_node("StreamPlayer").set_volume_db(-30+(oxygen/3))
+		var stream_player = leak.get_node("StreamPlayer")
+		stream_player.set_volume_db(-30+(oxygen/3))
+
 		if (isGameOver):
 			leak.get_node("Particles2D").hide()
+			stream_player.stop()
 
 func loseGame():
 	if (isGameOver):
