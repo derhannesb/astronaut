@@ -1039,7 +1039,7 @@ transform/pos = Vector2( 420.998, 622.463 )
 [node name="Sprite" type="Sprite" parent="SpaceStation"]
 
 editor/display_folded = true
-transform/pos = Vector2( 49.737, 337.403 )
+transform/pos = Vector2( 50.4004, 337.403 )
 transform/rot = -270.274
 transform/scale = Vector2( 0.75, 0.75 )
 z/z = 4
@@ -1175,7 +1175,9 @@ autoplay = "idle"
 
 [node name="Asteroid" parent="." instance=ExtResource( 29 )]
 
-transform/pos = Vector2( 469.129, 466.483 )
+transform/pos = Vector2( 742.59, 702.227 )
+min_force = 1200
+max_force = 2000
 
 [node name="SfxPlayer" type="StreamPlayer" parent="."]
 

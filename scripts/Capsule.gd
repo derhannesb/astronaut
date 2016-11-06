@@ -15,7 +15,7 @@ func setup_refs():
 
 func _fixed_process(delta):
 	if (abs(get_linear_velocity().x) > 400 || abs(get_linear_velocity().y) > 400):
-		set_linear_damp(8)
+		set_linear_damp(2)
 	else:
 		set_linear_damp(0.4)
 
