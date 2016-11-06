@@ -113,6 +113,8 @@ func _fixed_process(delta):
 
 	if (Input.is_action_just_pressed("PlayerPunch")):
 		punch_leak()
+	if (Input.is_action_just_pressed("PlayerFixLeak")):
+		fix_leak()
 
 func punch_leak():
 	animation_player.play("PlayerDrill")
@@ -130,3 +132,11 @@ func punch_leak():
 
 		var leak_dir = Utils.radians_to_vec(new_leak.get_rot())
 		capsule.add_force(new_leak.get_pos(), leak_dir * 500)
+
+func fix_leak():
+	var leaks_obj = get_node("/root/Main/Capsule/Leaks")
+	var leaks_objs = leaks_obj.get_children()
+
+	for leak in leaks_objs:
+		if (get_global_pos().distance_to(leak.get_global_pos()) < 40):
+			leak.queue_free()
