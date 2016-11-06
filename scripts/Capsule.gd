@@ -3,8 +3,10 @@ extends RigidBody2D
 var leaks
 
 const leak_force = 60
+var sfx_player = null
 
 func _ready():
+	sfx_player = get_node("/root/Main/SfxPlayer")
 	setup_refs()
 	set_fixed_process(true)
 
@@ -23,4 +25,5 @@ func _integrate_forces(state):
 	for i in range (state.get_contact_count()):
 		var contact_object = state.get_contact_collider_object(i)
 		if ("Asteroids" in contact_object.get_groups()):
-			get_node("/root/Main/SfxPlayer").play()
+			if (!sfx_player.is_playing()):
+				sfx_player.play()

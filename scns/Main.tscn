@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=1]
+[gd_scene load_steps=60 format=1]
 
 [ext_resource path="res://sprites/stars.png" type="Texture" id=1]
 [ext_resource path="res://sprites/nebula.png" type="Texture" id=2]
@@ -20,8 +20,12 @@
 [ext_resource path="res://scripts/OxygenBar.gd" type="Script" id=18]
 [ext_resource path="res://fonts/Muli-Regular.ttf" type="DynamicFontData" id=19]
 [ext_resource path="res://sprites/spacestation.png" type="Texture" id=20]
-[ext_resource path="res://scns/Asteroid.tscn" type="PackedScene" id=21]
-[ext_resource path="res://sounds/matal-hit.ogg" type="AudioStream" id=22]
+[ext_resource path="res://sprites/craneBase.png" type="Texture" id=21]
+[ext_resource path="res://sprites/craneMiddle.png" type="Texture" id=22]
+[ext_resource path="res://sprites/craneEnd.png" type="Texture" id=23]
+[ext_resource path="res://scripts/CraneTargeter.gd" type="Script" id=24]
+[ext_resource path="res://scns/Asteroid.tscn" type="PackedScene" id=25]
+[ext_resource path="res://sounds/matal-hit.ogg" type="AudioStream" id=26]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -204,30 +208,31 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 2.5 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:transform/rot")
+tracks/1/path = NodePath("../Capsule:velocity/linear")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 2.5, 3.8, 6 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ -270.274, -308.165, -341.662 ] }
+tracks/1/keys = { "times":FloatArray( 0, 2.4, 2.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 10, -200 ) ] }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../Capsule:velocity/linear")
+tracks/2/path = NodePath("../Capsule:velocity/angular")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0, 2.4, 2.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 10, -200 ) ] }
+tracks/2/keys = { "times":FloatArray( 0, 2.4, 2.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 0.5 ] }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../Capsule:velocity/angular")
+tracks/3/path = NodePath("../Capsule/Radar/Sprite:visibility/visible")
 tracks/3/interp = 1
 tracks/3/imported = false
-tracks/3/keys = { "times":FloatArray( 0, 2.4, 2.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 0.5 ] }
+tracks/3/keys = { "times":FloatArray( 0, 3.8, 3.9 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ false, false, true ] }
 tracks/4/type = "value"
-tracks/4/path = NodePath("../Capsule/Radar/Sprite:visibility/visible")
+tracks/4/path = NodePath(".:transform/rot")
 tracks/4/interp = 1
 tracks/4/imported = false
-tracks/4/keys = { "times":FloatArray( 0, 3.8, 3.9 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ false, false, true ] }
+tracks/4/keys = { "times":FloatArray( 0, 2.4, 6 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, -45.0 ] }
 
 [node name="Main" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
+editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -300,6 +305,7 @@ centered = false
 
 [node name="Capsule" type="RigidBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 422.29, 281.548 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -543,6 +549,7 @@ type_mask = 15
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -650,6 +657,7 @@ transform/pos = Vector2( 420.998, 622.463 )
 
 [node name="Sprite" type="Sprite" parent="SpaceStation"]
 
+editor/display_folded = true
 transform/pos = Vector2( 49.737, 337.403 )
 transform/rot = -270.274
 transform/scale = Vector2( 0.75, 0.75 )
@@ -700,13 +708,83 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = "Intro"
 
-[node name="Asteroid" parent="." instance=ExtResource( 21 )]
+[node name="Crane" type="Node2D" parent="SpaceStation"]
+
+transform/pos = Vector2( 48.6783, 112.894 )
+transform/rot = -83.5547
+transform/scale = Vector2( 0.25, 0.25 )
+z/z = 5
+
+[node name="Base" type="Sprite" parent="SpaceStation/Crane"]
+
+texture = ExtResource( 21 )
+
+[node name="FirstArm" type="Sprite" parent="SpaceStation/Crane/Base"]
+
+transform/pos = Vector2( -5.24017, 0.784587 )
+transform/rot = -617.302
+texture = ExtResource( 22 )
+offset = Vector2( 324.722, 0.231689 )
+__meta__ = { "_edit_bone_":true, "_edit_ik_":true }
+
+[node name="SecondArm" type="Sprite" parent="SpaceStation/Crane/Base/FirstArm"]
+
+transform/pos = Vector2( 540.313, 0.82959 )
+transform/rot = -53.7082
+transform/scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 22 )
+offset = Vector2( 316.961, 1.7338 )
+__meta__ = { "_edit_bone_":true }
+
+[node name="Hand" type="Node2D" parent="SpaceStation/Crane/Base/FirstArm/SecondArm"]
+
+transform/pos = Vector2( 537.942, -0.0848389 )
+transform/rot = 40.7165
+transform/scale = Vector2( 1, 1 )
+__meta__ = { "_edit_bone_":true }
+
+[node name="FirstFinger" type="Sprite" parent="SpaceStation/Crane/Base/FirstArm/SecondArm/Hand"]
+
+editor/display_folded = true
+transform/pos = Vector2( -1.54541, -1.61448 )
+transform/rot = 90.0
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 23 )
+offset = Vector2( 316.961, 1.7338 )
+
+[node name="Position2D" type="Position2D" parent="SpaceStation/Crane/Base/FirstArm/SecondArm/Hand/FirstFinger"]
+
+transform/pos = Vector2( 557.914, 2.7417 )
+transform/scale = Vector2( 4, 4 )
+
+[node name="SecondFinger" type="Sprite" parent="SpaceStation/Crane/Base/FirstArm/SecondArm/Hand"]
+
+editor/display_folded = true
+transform/pos = Vector2( -3.1571, 10.3967 )
+transform/rot = -90.0
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 23 )
+offset = Vector2( 316.961, 1.7338 )
+
+[node name="Position2D2" type="Position2D" parent="SpaceStation/Crane/Base/FirstArm/SecondArm/Hand/SecondFinger"]
+
+transform/pos = Vector2( 560.656, 2.74202 )
+transform/rot = -180.0
+transform/scale = Vector2( 4, 4 )
+
+[node name="Target" type="Position2D" parent="SpaceStation/Crane/Base/FirstArm/SecondArm/Hand"]
+
+transform/pos = Vector2( 136.786, 3.00854 )
+script/script = ExtResource( 24 )
+__meta__ = { "_edit_bone_":true }
+
+[node name="Asteroid" parent="." instance=ExtResource( 25 )]
 
 transform/pos = Vector2( 469.129, 466.483 )
 
 [node name="SfxPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 22 )
+stream/stream = ExtResource( 26 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 16.0
