@@ -136,7 +136,7 @@ func punch_leak():
 func fix_leak():
 	var leaks_obj = get_node("/root/Main/Capsule/Leaks")
 	var leaks_objs = leaks_obj.get_children()
-
+	get_node("Patch").play()
 	for leak in leaks_objs:
 		if (get_global_pos().distance_to(leak.get_global_pos()) < 40):
 			leak.queue_free()
