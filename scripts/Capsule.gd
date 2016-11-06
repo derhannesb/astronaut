@@ -14,6 +14,16 @@ func setup_refs():
 	leaks = get_node("Leaks")
 
 func _fixed_process(delta):
+	if (abs(get_linear_velocity().x) > 400 || abs(get_linear_velocity().y) > 400):
+		set_linear_damp(8)
+	else:
+		set_linear_damp(0.4)
+
+	if (abs(get_angular_velocity()) > 1.5):
+		set_angular_damp(20)
+	else:
+		set_angular_damp(6)
+
 	for leak in leaks.get_children():
 		var force_dir = Utils.radians_to_vec(leak.get_global_transform().get_rotation())
 		var oxygen_factor = ((GameState.oxygen - 50) / 100) + 0.5
