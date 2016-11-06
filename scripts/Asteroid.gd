@@ -2,12 +2,20 @@ extends RigidBody2D
 
 const max_distance_to_capsule = 4000
 
+var capsule
+
 func _ready():
-	get_node("Sprite").set_frame(rand_range(0, get_node("Sprite").get_hframes()-1))
-	apply_impulse(Vector2(0,0), (get_node("/root/Main/Capsule").get_global_pos() + Vector2(rand_range(-500, 500), rand_range(-500,500)) - get_global_pos()).normalized() * rand_range(400, 1200))
+	capsule = get_node("/root/Main/Capsule")
+
+	var sprite = get_node("Sprite")
+	sprite.set_frame(rand_range(0, sprite.get_hframes() - 1))
+	var rand_offset = Vector2(rand_range(-1500, 1500), rand_range(-1500, 1500))
+	var dir = ( (capsule.get_global_pos() + rand_offset) - get_global_pos() ).normalized()
+	var rand_forec = rand_range(400, 1000)
+	apply_impulse(Vector2(0,0), dir * rand_forec)
+
 	set_process(true)
-	
-	
+
 func _process(delta):
-	if (get_node("/root/Main/Capsule").get_pos().distance_to(get_pos()) > max_distance_to_capsule):
+	if (capsule.get_pos().distance_to(get_pos()) > max_distance_to_capsule):
 		queue_free()

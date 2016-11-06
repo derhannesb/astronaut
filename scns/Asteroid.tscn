@@ -10,7 +10,6 @@ radius = 64.0
 
 [node name="Asteroid" type="RigidBody2D" groups=[ "Asteroids" ]]
 
-transform/pos = Vector2( 722.362, 127.332 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
