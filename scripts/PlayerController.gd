@@ -127,7 +127,7 @@ func punch_leak():
 		var offset = (ray.get_collision_point() - get_global_pos()).normalized() * 8
 		new_leak.set_global_pos(ray.get_collision_point() + offset)
 		var hit_dir = ray.get_collision_normal()
-		var hit_rot = atan2(hit_dir.x, hit_dir.y)
+		var hit_rot = Utils.vec_to_radians(hit_dir)
 		new_leak.set_global_rot((get_global_rot() + hit_rot) / 2)
 
 		var leak_dir = Utils.radians_to_vec(new_leak.get_rot())

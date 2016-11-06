@@ -9,9 +9,9 @@ func _ready():
 
 	var sprite = get_node("Sprite")
 	sprite.set_frame(rand_range(0, sprite.get_hframes() - 1))
-	var rand_offset = Vector2(rand_range(-1500, 1500), rand_range(-1500, 1500))
+	var rand_offset = Vector2(rand_range(-2500, 2500), rand_range(-2500, 2500))
 	var dir = ( (capsule.get_global_pos() + rand_offset) - get_global_pos() ).normalized()
-	var rand_forec = rand_range(400, 1000)
+	var rand_forec = rand_range(100, 1000)
 	apply_impulse(Vector2(0,0), dir * rand_forec)
 
 	set_process(true)
