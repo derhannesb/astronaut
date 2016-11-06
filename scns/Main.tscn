@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=1]
+[gd_scene load_steps=65 format=1]
 
 [ext_resource path="res://sprites/stars.png" type="Texture" id=1]
 [ext_resource path="res://sprites/nebula.png" type="Texture" id=2]
@@ -15,17 +15,18 @@
 [ext_resource path="res://sprites/astronaut.png" type="Texture" id=13]
 [ext_resource path="res://animations/PlayerDrill.tres" type="Animation" id=14]
 [ext_resource path="res://animations/PlayerWalk.tres" type="Animation" id=15]
-[ext_resource path="res://fonts/muli.tres" type="DynamicFont" id=16]
-[ext_resource path="res://styles/oxygen.tres" type="StyleBox" id=17]
-[ext_resource path="res://scripts/OxygenBar.gd" type="Script" id=18]
-[ext_resource path="res://fonts/Muli-Regular.ttf" type="DynamicFontData" id=19]
-[ext_resource path="res://sprites/spacestation.png" type="Texture" id=20]
-[ext_resource path="res://scripts/Crane.gd" type="Script" id=21]
-[ext_resource path="res://sprites/craneBase.png" type="Texture" id=22]
-[ext_resource path="res://sprites/craneMiddle.png" type="Texture" id=23]
-[ext_resource path="res://sprites/craneEnd.png" type="Texture" id=24]
-[ext_resource path="res://scns/Asteroid.tscn" type="PackedScene" id=25]
-[ext_resource path="res://sounds/matal-hit.ogg" type="AudioStream" id=26]
+[ext_resource path="res://sounds/drill.ogg" type="AudioStream" id=16]
+[ext_resource path="res://fonts/muli.tres" type="DynamicFont" id=17]
+[ext_resource path="res://styles/oxygen.tres" type="StyleBox" id=18]
+[ext_resource path="res://scripts/OxygenBar.gd" type="Script" id=19]
+[ext_resource path="res://fonts/Muli-Regular.ttf" type="DynamicFontData" id=20]
+[ext_resource path="res://sprites/spacestation.png" type="Texture" id=21]
+[ext_resource path="res://scripts/Crane.gd" type="Script" id=22]
+[ext_resource path="res://sprites/craneBase.png" type="Texture" id=23]
+[ext_resource path="res://sprites/craneMiddle.png" type="Texture" id=24]
+[ext_resource path="res://sprites/craneEnd.png" type="Texture" id=25]
+[ext_resource path="res://scns/Asteroid.tscn" type="PackedScene" id=26]
+[ext_resource path="res://sounds/matal-hit.ogg" type="AudioStream" id=27]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -189,14 +190,14 @@ radius = 10.0
 font/size = 120
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 19 )
+font/font = ExtResource( 20 )
 
 [sub_resource type="DynamicFont" id=32]
 
 font/size = 48
 font/use_mipmaps = false
 font/use_filter = true
-font/font = ExtResource( 19 )
+font/font = ExtResource( 20 )
 
 [sub_resource type="Animation" id=33]
 
@@ -725,6 +726,8 @@ type_mask = 15
 
 [node name="FixedRot" type="Node2D" parent="Capsule/Player"]
 
+editor/display_folded = true
+
 [node name="WalkRayN" type="RayCast2D" parent="Capsule/Player/FixedRot"]
 
 transform/scale = Vector2( 1.5, 1.5 )
@@ -797,6 +800,17 @@ cast_to = Vector2( -4, -4 )
 layer_mask = 1
 type_mask = 15
 
+[node name="SfxPlayer" type="StreamPlayer" parent="Capsule/Player"]
+
+stream/stream = ExtResource( 16 )
+stream/play = false
+stream/loop = false
+stream/volume_db = 10.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 editor/display_folded = true
@@ -820,7 +834,7 @@ margin/left = 4.0
 margin/top = 6.0
 margin/right = 62.0
 margin/bottom = 59.0
-custom_fonts/font = ExtResource( 16 )
+custom_fonts/font = ExtResource( 17 )
 text = "O"
 percent_visible = 1.0
 lines_skipped = 0
@@ -836,7 +850,7 @@ margin/left = 27.0
 margin/top = 7.0
 margin/right = 85.0
 margin/bottom = 60.0
-custom_fonts/font = ExtResource( 16 )
+custom_fonts/font = ExtResource( 17 )
 text = "2"
 percent_visible = 1.0
 lines_skipped = 0
@@ -853,8 +867,8 @@ margin/left = 2.0
 margin/top = 250.0
 margin/right = 201.0
 margin/bottom = 298.0
-custom_styles/fg = ExtResource( 17 )
-custom_fonts/font = ExtResource( 16 )
+custom_styles/fg = ExtResource( 18 )
+custom_fonts/font = ExtResource( 17 )
 range/min = 0.0
 range/max = 100.0
 range/step = 1.0
@@ -863,7 +877,7 @@ range/value = 99.0
 range/exp_edit = false
 range/rounded = false
 percent/visible = true
-script/script = ExtResource( 18 )
+script/script = ExtResource( 19 )
 
 [node name="Victory" type="Label" parent="CanvasLayer/GUI"]
 
@@ -961,7 +975,7 @@ transform/pos = Vector2( 49.737, 337.403 )
 transform/rot = -270.274
 transform/scale = Vector2( 0.75, 0.75 )
 z/z = 4
-texture = ExtResource( 20 )
+texture = ExtResource( 21 )
 
 [node name="Particles2D" type="Particles2D" parent="SpaceStation/Sprite"]
 
@@ -1013,17 +1027,17 @@ transform/pos = Vector2( 48.6783, 112.894 )
 transform/rot = -83.5547
 transform/scale = Vector2( 0.25, 0.25 )
 z/z = 5
-script/script = ExtResource( 21 )
+script/script = ExtResource( 22 )
 
 [node name="Base" type="Sprite" parent="SpaceStation/Crane"]
 
-texture = ExtResource( 22 )
+texture = ExtResource( 23 )
 
 [node name="FirstArm" type="Sprite" parent="SpaceStation/Crane/Base"]
 
 transform/pos = Vector2( -5.24017, 0.784587 )
 transform/rot = 83.3557
-texture = ExtResource( 23 )
+texture = ExtResource( 24 )
 offset = Vector2( 324.722, 0.231689 )
 __meta__ = { "_edit_bone_":true, "_edit_ik_":true }
 
@@ -1032,7 +1046,7 @@ __meta__ = { "_edit_bone_":true, "_edit_ik_":true }
 transform/pos = Vector2( 540.313, 0.82959 )
 transform/rot = 0.0378173
 transform/scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 23 )
+texture = ExtResource( 24 )
 offset = Vector2( 316.961, 1.7338 )
 __meta__ = { "_edit_bone_":true }
 
@@ -1047,7 +1061,7 @@ __meta__ = { "_edit_bone_":true }
 transform/pos = Vector2( -1.54541, -1.61448 )
 transform/rot = -13.9725
 transform/scale = Vector2( 0.491344, 0.5 )
-texture = ExtResource( 24 )
+texture = ExtResource( 25 )
 offset = Vector2( 316.961, 1.7338 )
 
 [node name="Position2D" type="Position2D" parent="SpaceStation/Crane/Base/FirstArm/SecondArm/Hand/FirstFinger"]
@@ -1061,7 +1075,7 @@ __meta__ = { "_edit_bone_":true }
 transform/pos = Vector2( -9.25067, 11.9241 )
 transform/rot = -22.1277
 transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 24 )
+texture = ExtResource( 25 )
 offset = Vector2( 316.961, 1.7338 )
 
 [node name="Position2D2" type="Position2D" parent="SpaceStation/Crane/Base/FirstArm/SecondArm/Hand/SecondFinger"]
@@ -1088,13 +1102,13 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = "idle"
 
-[node name="Asteroid" parent="." instance=ExtResource( 25 )]
+[node name="Asteroid" parent="." instance=ExtResource( 26 )]
 
 transform/pos = Vector2( 469.129, 466.483 )
 
 [node name="SfxPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 26 )
+stream/stream = ExtResource( 27 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 16.0

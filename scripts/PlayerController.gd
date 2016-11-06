@@ -96,6 +96,7 @@ func _fixed_process(delta):
 
 func punch_leak():
 	animation_player.play("PlayerDrill")
+	get_node("SfxPlayer").play()
 	var ray = get_node("DrillRay")
 	if (ray.is_colliding()):
 		var new_leak = leak_dummy.instance()
