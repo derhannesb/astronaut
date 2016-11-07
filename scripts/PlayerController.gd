@@ -48,6 +48,10 @@ func setup_refs():
 	walk_ray_ne = fixed_rot.get_node("WalkRayNE")
 
 func _fixed_process(delta):
+	if (GameState.isGameLost):
+		animation_player.stop()
+		return
+	
 	var btn_top_pressed = Input.is_action_pressed("PlayerMoveTop")
 	var btn_right_pressed = Input.is_action_pressed("PlayerMoveRight")
 	var btn_bottom_pressed = Input.is_action_pressed("PlayerMoveBottom")

@@ -4,6 +4,7 @@ export var oxygen = 100
 var oxygen_lost_per_leak = .15
 
 export var isGameOver = false
+export var isGameLost = false
 
 func _ready():
 	set_process(true)
@@ -31,7 +32,8 @@ func _process(delta):
 func loseGame():
 	if (isGameOver):
 		return
-
+	
+	isGameLost = true
 	isGameOver = true
 	get_node("/root/Main/CanvasLayer/GUI/GameOver").show()
 	get_node("/root/Main/CanvasLayer/GUI/SFXGameOver").play()
