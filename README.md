@@ -16,6 +16,10 @@ the station is to push the capsule forward by releasing air.
 
 ![Screenshot of the game showing both parts of the space station](screenshot_2.png)
 
+## Download
+- [Windows 64](https://github.com/derhannesb/astronaut/releases/download/v1.0.0/Destructive_Controls_Win_64.exe)
+- [Gnu/Linux](https://github.com/derhannesb/astronaut/releases/download/v1.0.0/DestructiveControls_Linux.tar.gz)
+
 ## How to play
 Drill or Patch holes into your capsule to return to what is left of your
 space station.
