@@ -5,10 +5,15 @@ var leaks
 const leak_force = 120
 var sfx_player = null
 
+var org_linear_damp
+var org_angular_damp
+
 func _ready():
 	sfx_player = get_node("/root/Main/SfxPlayer")
 	setup_refs()
 	set_fixed_process(true)
+	org_angular_damp = get_angular_damp()
+	org_linear_damp = get_linear_damp()
 
 func setup_refs():
 	leaks = get_node("Leaks")
@@ -18,14 +23,16 @@ func _fixed_process(delta):
 		return
 
 	if (abs(get_linear_velocity().x) > 400 || abs(get_linear_velocity().y) > 400):
+		org_linear_damp = get_linear_damp()
 		set_linear_damp(2)
 	else:
-		set_linear_damp(0.4)
+		set_linear_damp(org_linear_damp)
 
 	if (abs(get_angular_velocity()) > 2):
+		org_angular_damp = get_angular_damp()
 		set_angular_damp(20)
 	else:
-		set_angular_damp(6)
+		set_angular_damp(org_angular_damp)
 
 	for leak in leaks.get_children():
 		var force_dir = Utils.radians_to_vec(leak.get_global_rot())
