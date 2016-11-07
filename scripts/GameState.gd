@@ -1,7 +1,7 @@
 extends Node
 
 export var oxygen = 100
-var oxygen_lost_per_leak = 0.20
+var oxygen_lost_per_leak = 0.4
 
 export var isGameOver = false
 export var isGameLost = false
