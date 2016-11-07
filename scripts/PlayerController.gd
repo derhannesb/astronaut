@@ -123,6 +123,7 @@ func _fixed_process(delta):
 func punch_leak():
 	animation_player.play("PlayerDrill")
 	get_node("SfxPlayer").play()
+	
 	var ray = get_node("DrillRay")
 	if (ray.is_colliding()):
 		var new_leak = leak_dummy.instance()
@@ -132,9 +133,9 @@ func punch_leak():
 		new_leak.set_global_pos(ray.get_collision_point() + offset)
 		var hit_dir = ray.get_collision_normal()
 		var hit_rot = Utils.vec_to_radians(hit_dir)
-		new_leak.set_global_rot((get_global_rot() + hit_rot) / 2)
+		new_leak.set_global_rot(hit_rot)
 
-		var leak_dir = Utils.radians_to_vec(new_leak.get_rot())
+		var leak_dir = Utils.radians_to_vec(new_leak.get_global_rot())
 		capsule.add_force(new_leak.get_pos(), leak_dir * 500)
 
 func fix_leak():
