@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=1]
+[gd_scene load_steps=70 format=1]
 
 [ext_resource path="res://sprites/stars.png" type="Texture" id=1]
 [ext_resource path="res://sprites/nebula.png" type="Texture" id=2]
@@ -8,29 +8,30 @@
 [ext_resource path="res://styles/oxygen.tres" type="StyleBox" id=6]
 [ext_resource path="res://scripts/OxygenBar.gd" type="Script" id=7]
 [ext_resource path="res://fonts/Muli-Regular.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://sounds/gameOver.ogg" type="AudioStream" id=9]
-[ext_resource path="res://sprites/AirParticle.png" type="Texture" id=10]
-[ext_resource path="res://scripts/Crane.gd" type="Script" id=11]
-[ext_resource path="res://sprites/craneBase.png" type="Texture" id=12]
-[ext_resource path="res://sprites/craneMiddle.png" type="Texture" id=13]
-[ext_resource path="res://sprites/craneEnd.png" type="Texture" id=14]
-[ext_resource path="res://sprites/spacestation.png" type="Texture" id=15]
-[ext_resource path="res://scns/Asteroid.tscn" type="PackedScene" id=16]
-[ext_resource path="res://sounds/matal-hit.ogg" type="AudioStream" id=17]
-[ext_resource path="res://scripts/Capsule.gd" type="Script" id=18]
-[ext_resource path="res://sprites/capsuleTop.png" type="Texture" id=19]
-[ext_resource path="res://scripts/AsteroidFactory.gd" type="Script" id=20]
-[ext_resource path="res://sprites/capsule.png" type="Texture" id=21]
-[ext_resource path="res://scripts/Radar.gd" type="Script" id=22]
-[ext_resource path="res://sprites/arrow.png" type="Texture" id=23]
-[ext_resource path="res://scripts/PlayerController.gd" type="Script" id=24]
-[ext_resource path="res://sprites/astronaut.png" type="Texture" id=25]
-[ext_resource path="res://animations/PlayerDrill.tres" type="Animation" id=26]
-[ext_resource path="res://animations/PlayerWalk.tres" type="Animation" id=27]
-[ext_resource path="res://sounds/drill.ogg" type="AudioStream" id=28]
-[ext_resource path="res://sounds/breath.ogg" type="AudioStream" id=29]
-[ext_resource path="res://sounds/patch.ogg" type="AudioStream" id=30]
-[ext_resource path="res://sounds/astronautSong.ogg" type="AudioStream" id=31]
+[ext_resource path="res://scripts/RestartButton.gd" type="Script" id=9]
+[ext_resource path="res://sounds/gameOver.ogg" type="AudioStream" id=10]
+[ext_resource path="res://sprites/AirParticle.png" type="Texture" id=11]
+[ext_resource path="res://scripts/Crane.gd" type="Script" id=12]
+[ext_resource path="res://sprites/craneBase.png" type="Texture" id=13]
+[ext_resource path="res://sprites/craneMiddle.png" type="Texture" id=14]
+[ext_resource path="res://sprites/craneEnd.png" type="Texture" id=15]
+[ext_resource path="res://sprites/spacestation.png" type="Texture" id=16]
+[ext_resource path="res://scns/Asteroid.tscn" type="PackedScene" id=17]
+[ext_resource path="res://sounds/matal-hit.ogg" type="AudioStream" id=18]
+[ext_resource path="res://scripts/Capsule.gd" type="Script" id=19]
+[ext_resource path="res://sprites/capsuleTop.png" type="Texture" id=20]
+[ext_resource path="res://scripts/AsteroidFactory.gd" type="Script" id=21]
+[ext_resource path="res://sprites/capsule.png" type="Texture" id=22]
+[ext_resource path="res://scripts/Radar.gd" type="Script" id=23]
+[ext_resource path="res://sprites/arrow.png" type="Texture" id=24]
+[ext_resource path="res://scripts/PlayerController.gd" type="Script" id=25]
+[ext_resource path="res://sprites/astronaut.png" type="Texture" id=26]
+[ext_resource path="res://animations/PlayerDrill.tres" type="Animation" id=27]
+[ext_resource path="res://animations/PlayerWalk.tres" type="Animation" id=28]
+[ext_resource path="res://sounds/drill.ogg" type="AudioStream" id=29]
+[ext_resource path="res://sounds/breath.ogg" type="AudioStream" id=30]
+[ext_resource path="res://sounds/patch.ogg" type="AudioStream" id=31]
+[ext_resource path="res://sounds/astronautSong.ogg" type="AudioStream" id=32]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -582,6 +583,24 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="RestartButton" type="Button" parent="CanvasLayer/GUI/GameOver"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 867.0
+margin/top = 387.0
+margin/right = 1045.0
+margin/bottom = 461.0
+custom_fonts/font = ExtResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Restart"
+flat = false
+script/script = ExtResource( 9 )
+
 [node name="Help" type="Label" parent="CanvasLayer/GUI"]
 
 focus/ignore_mouse = true
@@ -650,7 +669,7 @@ autoplay = "IntroFade"
 
 [node name="SFXGameOver" type="StreamPlayer" parent="CanvasLayer/GUI"]
 
-stream/stream = ExtResource( 9 )
+stream/stream = ExtResource( 10 )
 stream/play = true
 stream/loop = false
 stream/volume_db = 12.0
@@ -674,7 +693,7 @@ config/lifetime = 2.0
 config/emit_timeout = 2.0
 config/emitting = false
 config/explosiveness = 0.1
-config/texture = ExtResource( 10 )
+config/texture = ExtResource( 11 )
 params/direction = 0.0
 params/spread = 360.0
 params/linear_velocity = 40.0
@@ -714,18 +733,18 @@ editor/display_folded = true
 transform/rot = -80.0
 transform/scale = Vector2( 0.32, 0.32 )
 z/z = 5
-script/script = ExtResource( 11 )
+script/script = ExtResource( 12 )
 
 [node name="Base" type="Sprite" parent="SpaceStation/Crane"]
 
 transform/pos = Vector2( -13.8675, 10.6333 )
 transform/scale = Vector2( 1.37484, 1.37484 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 
 [node name="FirstArm" type="Sprite" parent="SpaceStation/Crane/Base"]
 
 transform/pos = Vector2( -5.24017, 0.784587 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 offset = Vector2( 324.722, 0.231689 )
 __meta__ = { "_edit_bone_":true, "_edit_ik_":true }
 
@@ -734,7 +753,7 @@ __meta__ = { "_edit_bone_":true, "_edit_ik_":true }
 transform/pos = Vector2( 540.313, 0.82959 )
 transform/rot = 0.0378173
 transform/scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 offset = Vector2( 316.961, 1.7338 )
 __meta__ = { "_edit_bone_":true }
 
@@ -749,7 +768,7 @@ __meta__ = { "_edit_bone_":true }
 transform/pos = Vector2( -1.54541, -1.61448 )
 transform/rot = -13.9725
 transform/scale = Vector2( 0.491344, 0.5 )
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 offset = Vector2( 316.961, 1.7338 )
 
 [node name="Position2D" type="Position2D" parent="SpaceStation/Crane/Base/FirstArm/SecondArm/Hand/FirstFinger"]
@@ -763,7 +782,7 @@ __meta__ = { "_edit_bone_":true }
 transform/pos = Vector2( -9.25067, 11.9241 )
 transform/rot = -22.1277
 transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 offset = Vector2( 316.961, 1.7338 )
 
 [node name="Position2D2" type="Position2D" parent="SpaceStation/Crane/Base/FirstArm/SecondArm/Hand/SecondFinger"]
@@ -796,44 +815,44 @@ transform/pos = Vector2( 1.91907, 219.56 )
 transform/rot = 90.0
 transform/scale = Vector2( 0.75, 0.75 )
 z/z = 4
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 
-[node name="Asteroid" parent="." instance=ExtResource( 16 )]
+[node name="Asteroid" parent="." instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 2250.98, 1892.65 )
 min_force = 1200
 max_force = 2000
 maximum_deviation = 1000
 
-[node name="Asteroid2" parent="." instance=ExtResource( 16 )]
+[node name="Asteroid2" parent="." instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 2845.2, 654.269 )
 min_force = 800
 max_force = 1000
 maximum_deviation = 1000
 
-[node name="Asteroid3" parent="." instance=ExtResource( 16 )]
+[node name="Asteroid3" parent="." instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 2526.78, 135.408 )
 min_force = 100
 max_force = 1000
 maximum_deviation = 2500
 
-[node name="Asteroid4" parent="." instance=ExtResource( 16 )]
+[node name="Asteroid4" parent="." instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 2818.01, 1467.61 )
 min_force = 800
 max_force = 1000
 maximum_deviation = 200
 
-[node name="Asteroid5" parent="." instance=ExtResource( 16 )]
+[node name="Asteroid5" parent="." instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 55.4243, 1493.37 )
 min_force = 100
 max_force = 1000
 maximum_deviation = 2500
 
-[node name="Asteroid6" parent="." instance=ExtResource( 16 )]
+[node name="Asteroid6" parent="." instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 1285.3, 1640.39 )
 min_force = 100
@@ -842,7 +861,7 @@ maximum_deviation = 80
 
 [node name="SfxPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 17 )
+stream/stream = ExtResource( 18 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 16.0
@@ -957,7 +976,7 @@ velocity/linear = Vector2( -100, -400 )
 velocity/angular = -0.7
 damp_override/linear = 0.2
 damp_override/angular = 5.0
-script/script = ExtResource( 18 )
+script/script = ExtResource( 19 )
 
 [node name="Roof" type="Sprite" parent="Capsule"]
 
@@ -965,17 +984,17 @@ transform/pos = Vector2( -1, -19 )
 transform/rot = -90.0
 transform/scale = Vector2( 0.501456, 0.430694 )
 z/z = 22
-texture = ExtResource( 19 )
+texture = ExtResource( 20 )
 
 [node name="Asteroids" type="Node2D" parent="Capsule"]
 
 editor/display_folded = true
-script/script = ExtResource( 20 )
+script/script = ExtResource( 21 )
 
 [node name="Sprite" type="Sprite" parent="Capsule/Asteroids"]
 
 visibility/visible = false
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="Camera2D" type="Camera2D" parent="Capsule"]
 
@@ -1004,7 +1023,7 @@ drag_margin/bottom = 0.2
 transform/rot = -90.0
 transform/scale = Vector2( 0.501456, 0.430694 )
 z/z = 15
-texture = ExtResource( 21 )
+texture = ExtResource( 22 )
 
 [node name="Collision" type="CollisionPolygon2D" parent="Capsule"]
 
@@ -1019,7 +1038,7 @@ trigger = false
 
 editor/display_folded = true
 transform/pos = Vector2( 72.4366, -35.6044 )
-script/script = ExtResource( 22 )
+script/script = ExtResource( 23 )
 
 [node name="Sprite" type="Sprite" parent="Capsule/Radar"]
 
@@ -1030,7 +1049,7 @@ transform/pos = Vector2( 0, -250 )
 transform/rot = 135.0
 transform/scale = Vector2( 0.1, 0.1 )
 z/z = 8
-texture = ExtResource( 23 )
+texture = ExtResource( 24 )
 hframes = 4
 frame = 3
 
@@ -1058,14 +1077,14 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
-script/script = ExtResource( 24 )
+script/script = ExtResource( 25 )
 speed = 2.5
 
 [node name="Sprite" type="Sprite" parent="Capsule/Player"]
 
 transform/pos = Vector2( 0, -1.5 )
 transform/scale = Vector2( 0.125, 0.125 )
-texture = ExtResource( 25 )
+texture = ExtResource( 26 )
 hframes = 7
 frame = 1
 
@@ -1081,8 +1100,8 @@ _update_shape_index = 0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/PlayerDrill = ExtResource( 26 )
-anims/Walk = ExtResource( 27 )
+anims/PlayerDrill = ExtResource( 27 )
+anims/Walk = ExtResource( 28 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -1182,7 +1201,7 @@ type_mask = 15
 
 [node name="SfxPlayer" type="StreamPlayer" parent="Capsule/Player"]
 
-stream/stream = ExtResource( 28 )
+stream/stream = ExtResource( 29 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 10.0
@@ -1193,7 +1212,7 @@ stream/buffering_ms = 500
 
 [node name="Breathing" type="StreamPlayer" parent="Capsule/Player"]
 
-stream/stream = ExtResource( 29 )
+stream/stream = ExtResource( 30 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 7.0
@@ -1204,7 +1223,7 @@ stream/buffering_ms = 500
 
 [node name="Patch" type="StreamPlayer" parent="Capsule/Player"]
 
-stream/stream = ExtResource( 30 )
+stream/stream = ExtResource( 31 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 0.0
@@ -1215,7 +1234,7 @@ stream/buffering_ms = 500
 
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 31 )
+stream/stream = ExtResource( 32 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0

@@ -9,6 +9,12 @@ export var isGameLost = false
 func _ready():
 	set_process(true)
 
+func restart():
+	isGameLost = false
+	isGameOver = false
+	oxygen = 100
+	get_tree().reload_current_scene()
+
 func _process(delta):
 	var leaks_obj = get_node("/root/Main/Capsule/Leaks")
 	var leaks_objs = leaks_obj.get_children()
