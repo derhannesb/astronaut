@@ -1,7 +1,7 @@
 extends Node2D
 
 var time_elapsed = 0
-var min_spawn_delay = 3
+var min_spawn_delay = 1
 var spawn_delay = min_spawn_delay
 
 const asteroid = preload("res://scns/Asteroid.tscn")

@@ -9,7 +9,6 @@ var org_linear_damp
 var org_angular_damp
 
 func _ready():
-	sfx_player = get_node("/root/Main/SfxPlayer")
 	setup_refs()
 	set_fixed_process(true)
 	org_angular_damp = get_angular_damp()
@@ -17,6 +16,7 @@ func _ready():
 
 func setup_refs():
 	leaks = get_node("Leaks")
+	sfx_player = get_node("/root/Main/SfxPlayer")
 
 func _fixed_process(delta):
 	if (GameState.isGameOver):
@@ -36,7 +36,7 @@ func _fixed_process(delta):
 
 	for leak in leaks.get_children():
 		var force_dir = Utils.radians_to_vec(leak.get_global_rot())
-		
+
 		var oxygen_factor = ((GameState.oxygen / 100) + 2) / 3
 		var force_value = delta * leak_force * oxygen_factor
 		add_force(leak.get_global_pos(), force_dir * force_value)
