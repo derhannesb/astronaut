@@ -115,9 +115,9 @@ func _fixed_process(delta):
 	elif (animation_player.get_current_animation() != "PlayerDrill"):
 		animation_player.stop()
 
-	if (Input.is_action_just_pressed("PlayerPunch")):
+	if (Input.is_action_pressed("PlayerPunch")):
 		punch_leak()
-	if (Input.is_action_just_pressed("PlayerFixLeak")):
+	if (Input.is_action_pressed("PlayerFixLeak")):
 		fix_leak()
 
 func punch_leak():
